@@ -1,36 +1,47 @@
 public class SalaryCalculator { // only give bonus when sales exceed 500:
-
     public static void main(String[] args) {
 
         boolean taxYearEnded = true;
+        double bonus = 1000;
+
+        // sales person 1
         double baseSalary = 20000;
         int numberOfSales = 1000;
-        double bonus = 1000;
         double commissionRate = 3.0;
 
         if (taxYearEnded) {
-            double totalSalary = baseSalary + (numberOfSales * commissionRate);
-
-
-            if (numberOfSales > 500) {
-                // only give bonus when sales exceed 500:
-                totalSalary += bonus;
-
-
-                System.out.println("Total salary after bonus: " + totalSalary);
-            }
+            double totalSalary = getTotalSalary(
+                    baseSalary,
+                    numberOfSales,
+                    commissionRate,
+                    bonus
+            );
+            System.out.println("Total salary after bonus: " + totalSalary);
         }
-
 
         // sales person 2:
         numberOfSales = 300;
         baseSalary = 25000;
         commissionRate = 2.0;
 
-
         if (taxYearEnded) {
-            double totalSalary = baseSalary + (numberOfSales * commissionRate);
+            double totalSalary = getTotalSalary(
+                    baseSalary,
+                    numberOfSales,
+                    commissionRate,
+                    bonus
+            );
             System.out.println("Total salary: " + totalSalary);
         }
     }
+
+    private static double getTotalSalary(double baseSalary, int numberOfSales, double commissionRate, double bonus) {
+        double totalSalary = baseSalary + (numberOfSales * commissionRate);
+        if (numberOfSales > 500) {
+            // only give bonus when sales exceed 500:
+            totalSalary += bonus;
+        }
+        return totalSalary;
+    }
+
 }
